@@ -18,6 +18,11 @@ class ViewController: UIViewController {
         return stack
     }()
     
+    lazy var helloLabel: UILabel = {
+        let label = label(text: "hi there")
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,11 +41,14 @@ class ViewController: UIViewController {
     
     private func applyAttributes() {
         view.addSubview(vStack)
-        vStack.addArrangedSubview(label(text: "hello there"))
+        vStack.addArrangedSubview(helloLabel)
         vStack.addArrangedSubview(label(text: "come here"))
         vStack.addArrangedSubview(label(text: "my little friend"))
         
         view.translatesAutoresizingMaskIntoConstraints = false
+        
+//        helloLabel.isEnabled = false // just grays it out
+        helloLabel.isHidden = true // this works. and the stack view adjusts to fill the space.
     }
     
     private func applyConstraints() {
